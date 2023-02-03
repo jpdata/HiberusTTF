@@ -1,6 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:hiberus_ttf/presentation/components/main_form.dart';
+
+import 'core/http_overrides.dart';
 
 void main() {
+  HttpOverrides.global = HiberusTtfHttpOverrides();
+
   runApp(const MyApp());
 }
 
@@ -11,7 +18,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Test',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -24,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const MyHomePage(title: 'Hiberus Technical Test for Flutter'),
     );
   }
 }
@@ -82,18 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // horizontal).
           mainAxisAlignment: MainAxisAlignment.center,
           children: const <Widget>[
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Name", //babel text
-                hintText: "Write you firts name", //hint text
-                prefixIcon: Icon(Icons.people), //prefix iocn
-                hintStyle: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold), //hint text style
-                labelStyle: TextStyle(
-                    fontSize: 13, color: Colors.redAccent), //label style
-              ),
-            ),
+            MainForm(),
           ],
         ),
       ),
