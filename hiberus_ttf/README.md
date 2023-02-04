@@ -8,7 +8,11 @@ Prueba técnica de flutter de Hiberus
 - email_validator: '^2.0.0'
 - dio: ^4.0.6
 - infinite_scroll_pagination: ^3.1.0
-- flutter_cache_store: ^0.8.1
+- flutter_cache_manager: ^3.3.0
+- cached_network_image: ^3.2.3
+- flutter_localizations:
+  - sdk: flutter
+- intl: any
 
 ## tareas opcionales
 
