@@ -1,0 +1,14 @@
+{
+    "hiberusTtf": "Hiberus Technical Test in Flutter",
+    "@hiberusTtf": {
+      "description": "Just Flutter skills test"
+    },
+    "name" : "name",
+    "nameHint": "Write your firts name",
+    "surname" : "surname",
+    "surnameHint" : "Write your last name",
+    "email" : "email",
+    "emailHint" : "Input you email",
+    "loading" : "loading...",
+    "submit" : "submit"
+  }

@@ -1,0 +1,11 @@
+{
+    "hiberusTtf" : "Prueba de conocimientos técnicos en Flutter de Hiberus",
+    "name" : "nombre",
+    "surname" : "apellido",
+    "email" : "correo electrónico",
+    "nameHint": "Escribe tu nombre",
+    "surnameHint" : "Escribe tu apellido",
+    "emailHint" : "Introduzca su correo electrónico",
+    "loading" : "cargando...",
+    "submit": "enviar"
+}

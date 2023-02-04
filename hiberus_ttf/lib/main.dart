@@ -1,13 +1,20 @@
 import 'dart:io';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:hiberus_ttf/presentation/components/main_form.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+// import 'package:path_provider_android/path_provider_android.dart';
+// import 'package:path_provider_ios/path_provider_ios.dart';
 
 import 'core/http_overrides.dart';
 
 void main() {
   HttpOverrides.global = HiberusTtfHttpOverrides();
-
+  DefaultCacheManager().emptyCache();
+  // if (Platform.isAndroid) PathProviderAndroid.registerWith();
+  // if (Platform.isIOS) PathProviderIOS.registerWith();
   runApp(const MyApp());
 }
 
@@ -19,6 +26,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Test',
+      localizationsDelegates: const [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -31,13 +48,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Hiberus Technical Test for Flutter'),
+      home: const MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
+  const MyHomePage({super.key});
 
   // This widget is the home page of your application. It is stateful, meaning
   // that it has a State object (defined below) that contains fields that affect
@@ -47,8 +64,6 @@ class MyHomePage extends StatefulWidget {
   // case the title) provided by the parent (in this case the App widget) and
   // used by the build method of the State. Fields in a Widget subclass are
   // always marked "final".
-
-  final String title;
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
@@ -67,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        title: Text(AppLocalizations.of(context)!.hiberusTtf),
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it

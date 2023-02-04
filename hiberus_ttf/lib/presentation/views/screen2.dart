@@ -1,3 +1,5 @@
+//import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:hiberus_ttf/presentation/components/mtg_card_widget.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -16,7 +18,6 @@ class Screen2 extends StatefulWidget {
 class _Screen2State extends State<Screen2> {
   final int _pageSize = Constants.defaultPageSize;
 
-  Future<List<MtgCardModel>> future = Future(() => []);
   List<MtgCardModel> cards = [];
   ScrollController? controller;
   int totalRecord = 0;
@@ -49,13 +50,6 @@ class _Screen2State extends State<Screen2> {
     super.initState();
   }
 
-  Image _getImage(String? url) {
-    url = url ?? "";
-    return url.isNotEmpty
-        ? Image.network(url)
-        : Image.asset("assets/images/mtgBack.jpg");
-  }
-
   @override
   void dispose() {
     _pagingController.dispose();
@@ -64,29 +58,37 @@ class _Screen2State extends State<Screen2> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Screen 2'),
-      ),
-      body: RefreshIndicator(
-        onRefresh: () => Future.sync(() => _pagingController.refresh()),
-        child: PagedListView<int, MtgCardModel>(
-          pagingController: _pagingController,
-          builderDelegate: PagedChildBuilderDelegate<MtgCardModel>(
-            itemBuilder: (context, item, index) => Padding(
+    if (_pagingController.error == null) {
+      return Scaffold(
+        appBar: AppBar(
+          title: const Text('Screen 2'),
+        ),
+        body: RefreshIndicator(
+          onRefresh: () => Future.sync(() => _pagingController.refresh()),
+          child: PagedListView<int, MtgCardModel>(
+            pagingController: _pagingController,
+            builderDelegate: PagedChildBuilderDelegate<MtgCardModel>(
+              itemBuilder: (context, item, index) => Padding(
                 padding: const EdgeInsets.all(15.0),
-                child: MtgCardWidget(
-                  name: item.name,
-                  ruleText: item.ruleText,
-                  image: _getImage(item.imageUrl),
-                )),
+                child: _pagingController.error == null
+                    ? MtgCardWidget(
+                        name: item.name,
+                        ruleText: item.ruleText,
+                        imageUrl: item.imageUrl,
+                      )
+                    : Card(
+                        child: Column(children: const [
+                          Text("Network error"),
+                        ]),
+                      ),
+              ),
+            ),
           ),
         ),
-      ),
+      );
+    }
+    return SnackBar(
+      content: Text('Error ${_pagingController.error.toString()}'),
     );
-    // return SnackBar(
-    //   content: Text(
-    //       'Error undefinec action for ${snapshot.connectionState.toString()}'),
-    // );
   }
 }

@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:hiberus_ttf/presentation/views/screen2.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class MainForm extends StatefulWidget {
   const MainForm({super.key});
@@ -30,37 +31,37 @@ class MainFormState extends State<MainForm> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const TextField(
+          TextField(
             decoration: InputDecoration(
-              labelText: "Name", //babel text
-              hintText: "Write your firts name", //hint text
-              prefixIcon: Icon(Icons.person), //prefix iocn
-              hintStyle: TextStyle(
+              labelText: AppLocalizations.of(context)!.name, //babel text
+              hintText: AppLocalizations.of(context)!.nameHint, //hint text
+              prefixIcon: const Icon(Icons.person), //prefix iocn
+              hintStyle: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold), //hint text style
-              labelStyle:
-                  TextStyle(fontSize: 14, color: Colors.green), //label style
+              labelStyle: const TextStyle(
+                  fontSize: 14, color: Colors.green), //label style
             ),
           ),
-          const TextField(
+          TextField(
             decoration: InputDecoration(
-              labelText: "Surname", //babel text
-              hintText: "Write your last name", //hint text
-              prefixIcon: Icon(Icons.person_2), //prefix iocn
-              hintStyle: TextStyle(
+              labelText: AppLocalizations.of(context)!.surname, //babel text
+              hintText: AppLocalizations.of(context)!.surnameHint, //hint text
+              prefixIcon: const Icon(Icons.person_2), //prefix iocn
+              hintStyle: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold), //hint text style
-              labelStyle:
-                  TextStyle(fontSize: 14, color: Colors.green), //label style
+              labelStyle: const TextStyle(
+                  fontSize: 14, color: Colors.green), //label style
             ),
           ),
           TextFormField(
-            decoration: const InputDecoration(
-              labelText: "Email", //babel text
-              hintText: "Input you email", //hint text
-              prefixIcon: Icon(Icons.person_2), //prefix iocn
-              hintStyle: TextStyle(
+            decoration: InputDecoration(
+              labelText: AppLocalizations.of(context)!.email, //babel text
+              hintText: AppLocalizations.of(context)!.emailHint, //hint text
+              prefixIcon: const Icon(Icons.person_2), //prefix iocn
+              hintStyle: const TextStyle(
                   fontSize: 18, fontWeight: FontWeight.bold), //hint text style
-              labelStyle:
-                  TextStyle(fontSize: 14, color: Colors.green), //label style
+              labelStyle: const TextStyle(
+                  fontSize: 14, color: Colors.green), //label style
             ),
             validator: (value) => EmailValidator.validate(value ?? "")
                 ? null
@@ -75,7 +76,8 @@ class MainFormState extends State<MainForm> {
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Processing Data')),
+                    SnackBar(
+                        content: Text(AppLocalizations.of(context)!.loading)),
                   );
                   Navigator.push(
                     context,
@@ -83,7 +85,7 @@ class MainFormState extends State<MainForm> {
                   );
                 }
               },
-              child: const Text('Submit'),
+              child: Text(AppLocalizations.of(context)!.submit),
             ),
           ),
         ],

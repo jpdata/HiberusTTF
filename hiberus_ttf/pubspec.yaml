@@ -38,7 +38,13 @@ dependencies:
   email_validator: '^2.0.0'
   dio: ^4.0.6
   infinite_scroll_pagination: ^3.1.0
-  flutter_cache_store: ^0.8.1
+  flutter_cache_manager: ^3.3.0
+  cached_network_image: ^3.2.3
+  flutter_localizations:
+    sdk: flutter
+  intl: any
+  # path_provider_android: ^2.0.22
+  # path_provider_ios: ^2.0.11
 
 dev_dependencies:
   flutter_test:
@@ -61,7 +67,7 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
-
+  generate: true
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
